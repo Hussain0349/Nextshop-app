@@ -14,11 +14,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         minlength: 7,
-        maxlength: 20
     },
     role: {
         type: String,
-        enum: ['user','admin'],
+        default: 'user'
 
     },
     address: {
@@ -36,3 +35,6 @@ const userSchema = mongoose.Schema({
     }
 
 },{timestamps:true})
+
+
+export default mongoose.model('User',userSchema)
