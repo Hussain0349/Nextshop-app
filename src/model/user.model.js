@@ -25,6 +25,12 @@ const userSchema = mongoose.Schema({
         required: true,
 
     },
+    otp: {
+        type: String
+    },
+    otpExpires: {
+        type: Date
+    },
     cart: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cart',

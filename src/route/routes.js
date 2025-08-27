@@ -8,6 +8,8 @@ import addProduct from '../controller/product controoller/addProduct.js'
 import adminLogout from '../controller/admin controller/adminLogout.js'
 import upload from '../middleware/multer.middleware.js'
 import forgetPassword from '../controller/forgetPassword.js'
+import resetPassword from '../controller/resetPassword.js'
+
 const router = express.Router()
 
 
@@ -15,10 +17,13 @@ const router = express.Router()
 // user routes
 router.post('/register',register)
 router.post('/login',login)
-router.post('/userForget',auth,forgetPassword)
+router.post('/forgotPassword',forgetPassword)
+router.post('/resetPassword',resetPassword)
+
 // admin related routes
 router.post('/admin',adminLogin)
 router.post('/adminLogout', adminLogout)
+
 
 // products route
 router.post('/addProduct',adminAuth,upload.single('image'),addProduct)
