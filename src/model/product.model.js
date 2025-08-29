@@ -4,6 +4,7 @@ const productSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
+        tolower: true
     },
     price: {
         type: Number,
@@ -12,6 +13,7 @@ const productSchema = mongoose.Schema({
     description: {
         type: String,
         required: true,
+        tolower: true
     },
     image: {
         type: String,
@@ -19,11 +21,13 @@ const productSchema = mongoose.Schema({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        tolower: true
     },
     company: {
         type: String,
-        required: true
+        required: true,
+        tolower: true
     },
     numberOfReview: {
         type: Number,

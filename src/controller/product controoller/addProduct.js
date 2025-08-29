@@ -8,8 +8,11 @@ import Product from '../../model/product.model.js'
 const addProduct = asyncHandler(async(req,res) => {
 
     const {name,price,description,category,company} = req.body
-
     const imagePath = req.file.path;
+
+    if(!name || !price || !description || !category || !company){
+        throw new apiError(400,'detailed not given either name price descripton')
+    }
 
     if(!imagePath){
         throw new apiError(400,'path is not given')

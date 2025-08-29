@@ -9,7 +9,8 @@ import adminLogout from '../controller/admin controller/adminLogout.js'
 import upload from '../middleware/multer.middleware.js'
 import forgetPassword from '../controller/forgetPassword.js'
 import resetPassword from '../controller/resetPassword.js'
-
+import deleteProduct from '../controller/product controoller/deleteProduct.js'
+import updateProduct from '../controller/product controoller/updateProduct.js'
 const router = express.Router()
 
 
@@ -27,6 +28,8 @@ router.post('/adminLogout', adminLogout)
 
 // products route
 router.post('/addProduct',adminAuth,upload.single('image'),addProduct)
+router.delete('/deleteProduct/:id',adminAuth,deleteProduct)
+router.put('/updateProduct/:id',adminAuth,updateProduct)
 
 
 export default router
