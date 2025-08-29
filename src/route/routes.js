@@ -11,9 +11,14 @@ import forgetPassword from '../controller/forgetPassword.js'
 import resetPassword from '../controller/resetPassword.js'
 import deleteProduct from '../controller/product controoller/deleteProduct.js'
 import updateProduct from '../controller/product controoller/updateProduct.js'
+import getAllProducts from '../controller/product controoller/getAllProducts.js'
+import getProduct from '../controller/product controoller/getProduct.js'
+
 const router = express.Router()
 
-
+// public routes
+router.get('/products',getAllProducts)
+router.get('/products/:name',getProduct)
 
 // user routes
 router.post('/register',register)
