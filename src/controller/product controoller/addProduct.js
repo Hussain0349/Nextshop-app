@@ -37,7 +37,7 @@ const addProduct = asyncHandler(async(req,res) => {
     if(!product){
         throw new apiError(500,'Data not saved! ')
     }
-    const response = new apiResponse(200,{
+    const response = new apiResponse(201,{
     name,
     price,
     description,

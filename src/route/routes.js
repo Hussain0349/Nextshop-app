@@ -15,6 +15,8 @@ import getAllProducts from '../controller/product controoller/getAllProducts.js'
 import getProduct from '../controller/product controoller/getProduct.js'
 import addToCart from '../controller/cart controller/addToCart.js'
 import cardItems from '../controller/cart controller/caritems.js'
+import registerSupplier from '../controller/supplier controller/registerSupplier.controller.js'
+import loginSupplier from '../controller/supplier controller/login.controller.js'
 // import removeToCart from '../controller/cart controller/removeToCart.js'
 const router = express.Router()
 
@@ -37,6 +39,9 @@ router.get('/cart',auth,cardItems)
 router.post('/admin',adminLogin)
 router.post('/adminLogout', adminLogout)
 
+// supplier routes
+router.post('/registerSupplier',adminAuth,registerSupplier)
+router.post('supplierLogin',supplierAuth,loginSupplier)
 
 // products route
 router.post('/addProduct',adminAuth,upload.single('image'),addProduct)
