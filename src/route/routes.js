@@ -13,7 +13,9 @@ import deleteProduct from '../controller/product controoller/deleteProduct.js'
 import updateProduct from '../controller/product controoller/updateProduct.js'
 import getAllProducts from '../controller/product controoller/getAllProducts.js'
 import getProduct from '../controller/product controoller/getProduct.js'
-
+import addToCart from '../controller/cart controller/addToCart.js'
+import cardItems from '../controller/cart controller/caritems.js'
+// import removeToCart from '../controller/cart controller/removeToCart.js'
 const router = express.Router()
 
 // public routes
@@ -25,6 +27,11 @@ router.post('/register',register)
 router.post('/login',login)
 router.post('/forgotPassword',forgetPassword)
 router.post('/resetPassword',resetPassword)
+
+// cart routes
+router.post('/cart',auth,addToCart)
+router.get('/cart',auth,cardItems)
+// router.delete('/cart/:itemId',auth,removeToCart)
 
 // admin related routes
 router.post('/admin',adminLogin)

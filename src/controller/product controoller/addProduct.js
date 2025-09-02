@@ -7,13 +7,13 @@ import apiResponse from '../../utils/apiResponse.js'
 import Product from '../../model/product.model.js'
 const addProduct = asyncHandler(async(req,res) => {
 
-    const {name,price,description,category,company} = req.body
+    const {name,price,description,category,company,quantity} = req.body
     const imagePath = req.file.path;
 
-    if(!name || !price || !description || !category || !company){
+    if(!name || !price || !description || !category || !company || !quantity ){
         throw new apiError(400,'detailed not given either name price descripton')
     }
-
+    
     if(!imagePath){
         throw new apiError(400,'path is not given')
     }
@@ -30,6 +30,7 @@ const addProduct = asyncHandler(async(req,res) => {
     description,
     category,
     company,
+    quantity,
     image: uploadImage.url, 
 
     })
@@ -41,6 +42,7 @@ const addProduct = asyncHandler(async(req,res) => {
     price,
     description,
     category,
+    quantity,
     company,
     imageUrl: uploadImage.url, 
   })

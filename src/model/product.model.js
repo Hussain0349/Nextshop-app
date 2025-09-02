@@ -29,9 +29,18 @@ const productSchema = mongoose.Schema({
         required: true,
         tolower: true
     },
+    quantity: {
+        type: Number,
+        requird: true,
+    },
     numberOfReview: {
         type: Number,
         default: 0
+    },
+    supplier: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true
     }
 },{timestamps: true})
 

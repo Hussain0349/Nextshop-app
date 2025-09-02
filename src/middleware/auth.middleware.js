@@ -4,7 +4,7 @@ import apiError from '../utils/apiError.js'
 import User from '../model/user.model.js'
 
 const auth = asyncHandler(async (req,res,next) => {
-    console.log(req.cookies)
+
     const tokens = req.cookies.token
 
     if(!tokens){
