@@ -5,6 +5,12 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    status: {
+        type: String,
+        enum: ['active','inactive','block'],
+        default: 'inactive'
+
+    },
     email: {
         type: String,
         unique: true,

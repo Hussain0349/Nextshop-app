@@ -10,6 +10,9 @@ const addProduct = asyncHandler(async(req,res) => {
     const {name,price,description,category,company,quantity} = req.body
     const imagePath = req.file.path;
 
+    const supplier = req.user?._id || req.cookies._id
+    console.log(supplier)
+
     if(!name || !price || !description || !category || !company || !quantity ){
         throw new apiError(400,'detailed not given either name price descripton')
     }
@@ -32,6 +35,7 @@ const addProduct = asyncHandler(async(req,res) => {
     company,
     quantity,
     image: uploadImage.url, 
+    supplier: supplier
 
     })
     if(!product){

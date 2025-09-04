@@ -17,8 +17,15 @@ const login = asyncHandler(async (req,res) => {
 
 
     const user = await User.findOne({email})
+
+    
     if(!user){
         throw new apiError(404,'user not found! ')
+    }
+    const checkUser = user.status
+    console.log(checkUser)
+    if(checkUser == 'block'){
+        throw new apiError(401,'User blocked has been blocked! ')
     }
     const isMatch = await bcrypt.compare(password,user.password)
 

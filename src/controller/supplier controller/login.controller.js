@@ -23,6 +23,11 @@ const loginSupplier = asyncHandler(async (req,res) => {
     if(!user){
         throw new apiError(404,'Supplier is not exist')
     }
+    const checkUser = user.status
+    console.log(checkUser)
+    if(checkUser == 'block'){
+        throw new apiError(401,'User blocked has been blocked! ')
+    }
 
     const isMatch = bcrytp.compare(password, user.password)
 
@@ -30,7 +35,7 @@ const loginSupplier = asyncHandler(async (req,res) => {
         throw new apiError(401,'Credential incorrect!')
     }
 
-    const jwtToken = jwt.sign({_id: user._id}, process.env.JWT_TOKEN, {expiresIn:'2d'})
+    const jwtToken = jwt.sign({_id: user._id}, process.env.JWT_TOKEN_SECRET, {expiresIn:'2d'})
 
     if(!jwtToken){
         throw new apiError(500,'Failed to generat the token')
@@ -39,7 +44,7 @@ const loginSupplier = asyncHandler(async (req,res) => {
 
     const response = new apiResponse(200,'');
 
-    res.status(response.statusCode).cookie('supplierToken',jwtToken).json({
+    res.status(response.statusCode).cookie('supplierToken',jwtToken,options).json({
         response
     })
     

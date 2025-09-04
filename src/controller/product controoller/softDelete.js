@@ -2,7 +2,7 @@ import apiError from "../../utils/apiError.js";
 import asyncHandler from "../../utils/asyncHandler.js";
 import Product from '../../model/product.model.js'
 import apiResponse from "../../utils/apiResponse.js";
-const deleteProduct = asyncHandler(async (req,res) => {
+const softDelete = asyncHandler(async (req,res) => {
 
     const { id } = req.params
 
@@ -15,19 +15,18 @@ const deleteProduct = asyncHandler(async (req,res) => {
     if(!product){
         throw new apiError(400,'Product not found')
     }
-    const deletedProduct = await Product.findByIdAndDelete(id)
-
-
-    if(!deletedProduct){
+    const softDelete = product.status = 'inactive'
+    await product.save()
+    if(!softDelete){
         throw new apiError(500,'Something went wrong while deleting item')
     }
 
     
-    const response = new apiResponse(200,deletedProduct,"Product deleted successfully! ")
+    const response = new apiResponse(200,softDelete,"Product deactivated successfully! ")
 
     res.status(response.statusCode).json({
         response
     })
 
 })
-export default deleteProduct
+export default softDelete

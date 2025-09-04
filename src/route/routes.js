@@ -9,7 +9,7 @@ import adminLogout from '../controller/admin controller/adminLogout.js'
 import upload from '../middleware/multer.middleware.js'
 import forgetPassword from '../controller/forgetPassword.js'
 import resetPassword from '../controller/resetPassword.js'
-import deleteProduct from '../controller/product controoller/deleteProduct.js'
+import softDelete from '../controller/product controoller/softDelete.js'
 import updateProduct from '../controller/product controoller/updateProduct.js'
 import getAllProducts from '../controller/product controoller/getAllProducts.js'
 import getProduct from '../controller/product controoller/getProduct.js'
@@ -18,6 +18,9 @@ import cardItems from '../controller/cart controller/caritems.js'
 import registerSupplier from '../controller/supplier controller/registerSupplier.controller.js'
 import loginSupplier from '../controller/supplier controller/login.controller.js'
 // import removeToCart from '../controller/cart controller/removeToCart.js'
+import supplierAuth from '../middleware/supplierAuth.middleware.js'
+import deleteProduct from '../controller/product controoller/deleteProduct.js'
+import blockedUser from '../controller/admin controller/blockedUser.js'
 const router = express.Router()
 
 // public routes
@@ -38,14 +41,15 @@ router.get('/cart',auth,cardItems)
 // admin related routes
 router.post('/admin',adminLogin)
 router.post('/adminLogout', adminLogout)
-
+router.post('/block/:role/:id',adminAuth,blockedUser)
 // supplier routes
 router.post('/registerSupplier',adminAuth,registerSupplier)
-router.post('supplierLogin',supplierAuth,loginSupplier)
+router.post('/supplierLogin',loginSupplier)
 
 // products route
-router.post('/addProduct',adminAuth,upload.single('image'),addProduct)
+router.post('/addProduct',supplierAuth,upload.single('image'),addProduct)
 router.delete('/deleteProduct/:id',adminAuth,deleteProduct)
+router.delete('/deactivate/:id',supplierAuth,softDelete)
 router.put('/updateProduct/:id',adminAuth,updateProduct)
 
 

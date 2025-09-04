@@ -37,9 +37,13 @@ const productSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    status: {
+        type: String,
+        default: 'active'
+    },
     supplier: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
+        ref: 'Supplier',
         required: true
     }
 },{timestamps: true})

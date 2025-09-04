@@ -14,13 +14,13 @@ const {name,email,contact,address,password} = req.body
         throw new apiError(400,'Info not given')
     }
 
-    const supplier = await Supplier.finOne({email})
+    const supplier = await Supplier.findOne({email})
 
     if(supplier){
         throw new apiError(409, 'Supplier already exist! ')
     }
 
-    const hashedPassword = bcrypt.hash(password,10)
+    const hashedPassword = await bcrypt.hash(password,10)
 
     if(!hashedPassword){
         throw new apiError(500,'Password is not hashed')
@@ -38,7 +38,7 @@ const {name,email,contact,address,password} = req.body
         throw new apiError(500,'Supplier is not added! ')
     }
 
-    const selectedUser = await user.findById(user._id).select('-password')
+    const selectedUser = await Supplier.findById(user._id).select('-password')
 
     const response = new apiResponse(201, selectedUser, 'Supplier added sucessfully! ')
 

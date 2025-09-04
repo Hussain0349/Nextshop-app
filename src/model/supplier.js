@@ -14,6 +14,11 @@ const supplierSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    status: {
+        type: String,
+        enum: ['active','inactive','block'],
+        default: 'inactive'
+    },
     address: {
         type: String,
         required: true
