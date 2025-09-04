@@ -40,7 +40,7 @@ const login = asyncHandler(async (req,res) => {
     }
     const response = new apiResponse(200,user,'Token added sucessfully!')
 
-    res.status(response.statusCode).cookie('accessToken',jwtToken,options).json({
+    res.status(response.statusCode).cookie('userToken',jwtToken,options).json({
         response
     })
 

@@ -9,8 +9,8 @@ const supplierAuth = asyncHandler(async (req,res,next) => {
         httpOnly: true,
         secure: true
     }
-    const token = req.cookies.accessToken
-
+    const token = req.cookies.supplierToken
+    console.log(token)
     if(!token){
         throw new apiError(402 , 'Token is not given')
     }
@@ -25,7 +25,7 @@ const supplierAuth = asyncHandler(async (req,res,next) => {
       throw new apiError(403, 'User has been blocked!')
     }
 
-    if(!verifyToken){
+    if(!decodedToken){
         throw new apiError(401 , 'Token is not matched')
     }
 

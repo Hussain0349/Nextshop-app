@@ -21,6 +21,8 @@ import loginSupplier from '../controller/supplier controller/login.controller.js
 import supplierAuth from '../middleware/supplierAuth.middleware.js'
 import deleteProduct from '../controller/product controoller/deleteProduct.js'
 import blockedUser from '../controller/admin controller/blockedUser.js'
+import logOut from '../controller/supplier controller/logout.controller.js'
+
 const router = express.Router()
 
 // public routes
@@ -42,9 +44,11 @@ router.get('/cart',auth,cardItems)
 router.post('/admin',adminLogin)
 router.post('/adminLogout', adminLogout)
 router.post('/block/:role/:id',adminAuth,blockedUser)
+
 // supplier routes
 router.post('/registerSupplier',adminAuth,registerSupplier)
 router.post('/supplierLogin',loginSupplier)
+router.post('/supplierLogout',logOut)
 
 // products route
 router.post('/addProduct',supplierAuth,upload.single('image'),addProduct)

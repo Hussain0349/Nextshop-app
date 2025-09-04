@@ -27,8 +27,13 @@ const addProduct = asyncHandler(async(req,res) => {
     if(!uploadImage){
         throw new apiError(500,'something went wrong! ')
     }
+    const existedProduct = await Product.findOne({name})
+
+    if(existedProduct){
+        throw new apiError(400,'Product already Exist! ')
+    }
     const product = await Product.create({
-    name,
+    name: name.toLowerCase(),
     price,
     description,
     category,
