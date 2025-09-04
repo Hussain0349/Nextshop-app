@@ -44,7 +44,7 @@ const loginSupplier = asyncHandler(async (req,res) => {
 
     const response = new apiResponse(200,'');
 
-    res.status(response.statusCode).cookie('supplierToken',jwtToken,options).json({
+    res.status(response.statusCode).cookie('accessToken',jwtToken,options).json({
         response
     })
     

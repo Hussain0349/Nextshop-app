@@ -5,7 +5,7 @@ import User from '../model/user.model.js'
 
 const auth = asyncHandler(async (req,res,next) => {
 
-    const tokens = req.cookies.token
+    const tokens = req.cookies.accessToken
 
     if(!tokens){
         throw new apiError(400,'token is not found!')

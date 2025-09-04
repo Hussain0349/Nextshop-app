@@ -27,7 +27,7 @@ const adminLogin = asyncHandler( async (req,res) => {
     }
     const response = new apiResponse(200,admin,'admin log in sucessfully!')
 
-    res.status(response.statusCode).cookie('adminToken',generateToken).json({
+    res.status(response.statusCode).cookie('accessToken',generateToken).json({
         response
     })
 
